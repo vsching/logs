@@ -10,6 +10,8 @@ module Logs
         before_action :load_logs_list
 
         def load_logs
+          LOG_PATH = Rails.root + 'log/'
+          
           file_name = params[:name] || Rails.env
 
           if File.exist?(LOG_PATH + (file_name + '.log'))
