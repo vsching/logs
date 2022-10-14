@@ -11,7 +11,12 @@ module Logs
 
         def load_logs
           file_name = params[:name] || Rails.env
-          @logs = Logs::Viewer.call(file_name).read
+
+          if File.exist?(LOG_PATH + (file_name + '.log')
+            @logs = Logs::Viewer.call(file_name).read
+          else
+            @logs = nil
+          end
         end
 
         def load_logs_list
